@@ -9,6 +9,10 @@ import java.util.List;
  */
 
 public class InsertionSort implements SortInterface {
+    private InsertionSort() {
+        throw new AssertionError();
+    }
+
     /**
      * Sorts the integers inside the array list using selection sort in ascending order
      * @param list the list to sort

@@ -1,6 +1,8 @@
 package org.main.examples.lists;
 
+import org.main.sorting.BubbleSort;
 import org.main.sorting.InsertionSort;
+import org.main.sorting.MergeSort;
 import org.main.sorting.SelectionSort;
 
 import java.util.ArrayList;
@@ -19,7 +21,6 @@ public class Sorting {
         }
 
         System.out.println("List: " + list);
-        InsertionSort.sortDescending(list);
-        System.out.println("Sorted List: " + list);
+        System.out.println("Sorted List: " + MergeSort.sortDescending(list));
     }
 }
