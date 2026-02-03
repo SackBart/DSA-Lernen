@@ -1,5 +1,6 @@
 package org.main.sorting;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * Same with Ascending, but it searches for the lowest number
  */
 
-public class SelectionSort {
+public class SelectionSort implements SortInterface {
     /**
      * Sorts the integers inside the array list using selection sort in ascending order
      * @param list the list to sort
@@ -30,11 +31,7 @@ public class SelectionSort {
             }
 
             // Switch the index with the highest value on the highest current index
-            int highestValue = list.get(currentHighestIndex);
-            int valueOnP = list.get(p);
-
-            list.set(currentHighestIndex, valueOnP);
-            list.set(p, highestValue);
+            Collections.swap(list, p, currentHighestIndex);
 
             // Decrease the field
             p -= 1;
@@ -61,11 +58,7 @@ public class SelectionSort {
             }
 
             // Switch the index with the lowest value with the current highest index
-            int highestValue = list.get(currentHighestIndex);
-            int valueOnP = list.get(p);
-
-            list.set(currentHighestIndex, valueOnP);
-            list.set(p, highestValue);
+            Collections.swap(list, p, currentHighestIndex);
 
             // Decrease the field
             p -= 1;
