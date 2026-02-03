@@ -1,27 +1,19 @@
 package org.main.lists.nodes;
 
-public class Node {
-    private Node next;
-    private Object obj;
+public class Node<T> {
+    private Node<T> next;
+    private T obj;
 
-    public Node(final Object obj, final Node next) {
+    public Node(final T obj, final Node<T> next) {
         this.next = next;
         this.obj = obj;
     }
 
-    public Node getNext() {
-        return next;
-    }
+    public Node<T> getNext() { return next; }
 
-    public void setNext(final Node next) {
-        this.next = next;
-    }
+    public void setNext(final Node<T> next) { this.next = next; }
 
-    public Object getObj() {
-        return obj;
-    }
+    public T getObj() { return obj; }
 
-    public void setObj(final Object obj) {
-        this.obj = obj;
-    }
+    public void setObj(final T obj) { this.obj = obj; }
 }

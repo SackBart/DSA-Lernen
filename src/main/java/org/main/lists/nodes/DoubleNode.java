@@ -1,33 +1,33 @@
 package org.main.lists.nodes;
 
-public class DoubleNode {
-    private DoubleNode next;
-    private DoubleNode prev;
-    private Object obj;
+public class DoubleNode<T> {
+    private DoubleNode<T> next;
+    private DoubleNode<T> prev;
+    private T obj;
 
-    public DoubleNode (final Object obj, DoubleNode next, DoubleNode prev) {
+    public DoubleNode (final T obj, DoubleNode<T> next, DoubleNode<T> prev) {
         this.obj = obj;
         this.next = next;
         this.prev = prev;
     }
 
-    public DoubleNode getNext() {
+    public DoubleNode<T> getNext() {
         return next;
     }
 
-    public DoubleNode getPrev() {
+    public DoubleNode<T> getPrev() {
         return prev;
     }
 
-    public Object getObj() {
-        return obj;
-    }
+    public T getObj() { return obj; }
 
-    public void setNext(DoubleNode next) {
+    public void setObj(final T obj) { this.obj = obj; }
+
+    public void setNext(DoubleNode<T> next) {
         this.next = next;
     }
 
-    public void setPrev(DoubleNode prev) {
+    public void setPrev(DoubleNode<T> prev) {
         this.prev = prev;
     }
 }

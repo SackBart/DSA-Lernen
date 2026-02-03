@@ -2,8 +2,11 @@ package org.main.lists;
 
 import org.main.lists.nodes.Node;
 
-public class LinkedList {
-    private Node head;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class LinkedList<T> {
+    private Node<T> head;
 
     public LinkedList() {
         this.head = null;
@@ -13,20 +16,20 @@ public class LinkedList {
         return this.head == null;
     }
 
-    public void addFirst(final Object obj) {
-        Node n = new Node(obj, head);
+    public void addFirst(final T obj) {
+        Node<T> n = new Node<>(obj, head);
         head = n;
     }
 
-    public void addLast(final Object obj) {
-        Node n = new Node(obj, null);
+    public void addLast(final T obj) {
+        Node<T> n = new Node<>(obj, null);
 
         if (isEmpty()) {
             this.head = n;
             return;
         }
 
-        Node l = this.head;
+        Node<T> l = this.head;
 
         while (l.getNext() != null) {
             l = l.getNext();
@@ -34,12 +37,12 @@ public class LinkedList {
         l.setNext(n);
     }
 
-    public Object removeFirst() {
+    public T removeFirst() {
         if (isEmpty()) {
             return null;
         }
 
-        Object obj = this.head.getObj();
+        T obj = this.head.getObj();
         this.head = this.head.getNext();
         return obj;
     }
@@ -55,12 +58,35 @@ public class LinkedList {
             return obj;
         }
 
-        Node l = head;
+        Node<T> l = head;
         while (l.getNext().getNext() != null) {
             l = l.getNext();
         }
-        Object obj = l.getNext().getObj();
+        T obj = l.getNext().getObj();
         l.setNext(null);
         return obj;
+    }
+
+    private class ListIterator implements Iterator<Object> {
+        private Node<T> current = null;
+
+        public ListIterator() {
+            this.current = head;
+        }
+        public boolean hasNext() {
+            return this.current != null;
+        }
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            T obj = this.current.getObj();
+            this.current = this.current.getNext();
+            return obj;
+        }
+    }
+
+    public Iterator iterator() {
+        return new ListIterator();
     }
 }
