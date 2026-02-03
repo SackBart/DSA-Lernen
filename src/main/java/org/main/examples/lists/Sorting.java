@@ -11,8 +11,8 @@ public class Sorting {
         Random r = new Random();
         List<Integer> list = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
-            int random = r.nextInt(100);
+        for (int i = 0; i < 100; i++) {
+            int random = r.nextInt(1000);
 
             list.add(random);
         }
