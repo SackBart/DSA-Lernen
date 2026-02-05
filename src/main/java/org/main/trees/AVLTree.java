@@ -1,14 +1,14 @@
 package org.main.trees;
 
 import org.main.trees.nodes.AVLNode;
-import org.main.trees.nodes.Node;
+import org.main.trees.util.AVLTreePrinter;
 
 
 /**
  * The AVL Tree is an extension to the BinarySearch tree, but it enforces a rule so that
  * the tree stays balanced.
  *
- * "The difference between the height of the right subset and the height of the left subset is x <= |1|"
+ * "The difference between the height of the left subset and the height of the right subset is x <= |1|"
  *
  * If it reaches -2 or 2, the case will be observed and it will either do a normal rotation or a double rotation
  * See for more info: <a href="https://www.geeksforgeeks.org/dsa/introduction-to-avl-tree/">...</a>
@@ -24,6 +24,7 @@ public class AVLTree<K extends Comparable<K>> {
             root = new AVLNode<>(k);
         else
             root = insertNode(root, k);
+        AVLTreePrinter.printNode(root);
     }
 
     private AVLNode<K> insertNode(AVLNode<K> n, K k) {
@@ -96,11 +97,12 @@ public class AVLTree<K extends Comparable<K>> {
                 }
             }
         }
-
         return n;
     }
 
     private AVLNode<K> rotateLeft(AVLNode<K> n) {
+        System.out.println("Before rotate left");
+        AVLTreePrinter.printNode(root);
         AVLNode<K> tmp = n.getRight();
         n.setRight(tmp.getLeft());
         n.updateHeight();
@@ -110,6 +112,8 @@ public class AVLTree<K extends Comparable<K>> {
     }
 
     private AVLNode<K> rotateRight(AVLNode<K> n) {
+        System.out.println("Before rotate right");
+        AVLTreePrinter.printNode(root);
         AVLNode<K> tmp = n.getLeft();
         n.setLeft(tmp.getRight());
         n.updateHeight();
