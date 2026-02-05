@@ -3,11 +3,23 @@ package org.main.trees;
 import org.main.trees.nodes.AVLNode;
 import org.main.trees.nodes.Node;
 
+
+/**
+ * The AVL Tree is an extension to the BinarySearch tree, but it enforces a rule so that
+ * the tree stays balanced.
+ *
+ * "The difference between the height of the right subset and the height of the left subset is x <= |1|"
+ *
+ * If it reaches -2 or 2, the case will be observed and it will either do a normal rotation or a double rotation
+ * See for more info: <a href="https://www.geeksforgeeks.org/dsa/introduction-to-avl-tree/">...</a>
+ *
+ * @param <K> A comparable
+ */
 public class AVLTree<K extends Comparable<K>> {
     private AVLNode<K> root;
 
     public void insert(K k) {
-        System.out.println("insert(" + k + ")"); // Output zur Veranschaulichung
+        System.out.println("insert(" + k + ")"); // Output for visualisation
         if (root == null)
             root = new AVLNode<>(k);
         else
@@ -17,31 +29,31 @@ public class AVLTree<K extends Comparable<K>> {
     private AVLNode<K> insertNode(AVLNode<K> n, K k) {
         int cmp = n.getKey().compareTo(k);
         if (cmp == 0) {
-            // Schlüssel bereits vorhanden. Es ist nichts zu tun.
+            // Key already exists, nothing to do so insert it on the right
         } else if (cmp < 0) {
-            // Rechts einfügen
+            // Cmp < 0: n key is smaller than k
             if (n.getRight() != null) {
-                // Im rechten Teilbaum einfügen (rekursiv)
+                // Insert it on the right subtree (recursive)
                 n.setRight(insertNode(n.getRight(), k));
             } else {
-                // Neuen Blattknoten rechts erzeugen
+                // Create a new leaf node on the right
                 n.setRight(new AVLNode<>(k));
             }
-            // Höhe des rechten Teilbaums könnte sich verändert haben
+            // The height of the subtree could have changed
             n.updateHeight();
-            // Ggf. rebalancieren
+            // Rebalance if needed
             if (n.getBalance() < -1) {
-                // Rebalancieren
+                // Rebalance
                 if (n.getRight().getBalance() < 0) {
-                    // Fall 3: Einfachrotation nach links
-                    // Output zur Veranschaulichung:
+                    // Case 1: Left Rotation
+                    // Output for visualisation:
                     System.out.println("L("
                             + n.getRight().getKey() + ","
                             + n.getKey() + ")");
                     n = rotateLeft(n);
                 } else {
-                    // Fall 4: Doppelrotation (rechts-links)
-                    // Output zur Veranschaulichung:
+                    // Case 2: Double-rotation (right-left)
+                    // Output for visualisation:
                     System.out.println("DR("
                             + n.getRight().getLeft().getKey() + ","
                             + n.getRight().getKey() + ","
@@ -51,29 +63,30 @@ public class AVLTree<K extends Comparable<K>> {
                 }
             }
         } else {
-            // Links einfügen (symmetrisch)
+            // Cmp > 0: n key is bigger than k
+            // Insert on the left (symmetrical)
             if (n.getLeft() != null) {
-                // Im linken Teilbaum einfügen (rekursiv)
+                // Insert it on the left subtree (recursive)
                 n.setLeft(insertNode(n.getLeft(), k));
             } else {
-                // Neuen Blattknoten links erzeugen
+                // Create new leaf node on the left
                 n.setLeft(new AVLNode<>(k));
             }
-            // Höhe des linken Teilbaums könnte sich verändert haben
+            // Height of the subtree could have changed
             n.updateHeight();
-            // Ggf. rebalancieren
+            // Rebalance if needed
             if (n.getBalance() > 1) {
-                // Rebalancieren
+                // Rebalance
                 if (n.getLeft().getBalance() > 0) {
-                    // Fall 1: Einfachrotation nach rechts
-                    // Output zur Veranschaulichung:
+                    // Case 1: Rotate right
+                    // Output for visualisation:
                     System.out.println("R("
                             + n.getLeft().getKey() + ","
                             + n.getKey() + ")");
                     n = rotateRight(n);
                 } else {
-                    // Fall 2: Doppelrotation (links-rechts)
-                    // Output zur Veranschaulichung:
+                    // Fall 2: Double-rotation (left-right)
+                    // Output for visualisation:
                     System.out.println("DL("
                             + n.getLeft().getRight().getKey() + ","
                             + n.getLeft().getKey() + ","
@@ -103,21 +116,5 @@ public class AVLTree<K extends Comparable<K>> {
         tmp.setRight(n);
         tmp.updateHeight();
         return tmp;
-    }
-
-    public static void main(String[] args) {
-        // Baum instanziieren
-        AVLTree<Integer> tree = new AVLTree<>();
-
-        // Elemente in Baum einfügen
-        tree.insert(3);
-        tree.insert(2);
-        tree.insert(1);
-        tree.insert(4);
-        tree.insert(5);
-        tree.insert(6);
-        tree.insert(7);
-        tree.insert(16);
-        tree.insert(15);
     }
 }
