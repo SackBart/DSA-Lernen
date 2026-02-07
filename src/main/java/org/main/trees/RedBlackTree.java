@@ -13,9 +13,11 @@ import org.main.trees.nodes.RBNode;
  */
 public class RedBlackTree<K extends Comparable<K>> {
     private RBNode<K> root;
+    private int size;
 
     public RedBlackTree() {
         root = null;
+        size = 0;
     }
 
     private void split(RBNode<K> node, RBNode<K> parent, RBNode<K> grand, RBNode<K> great) {
@@ -49,6 +51,7 @@ public class RedBlackTree<K extends Comparable<K>> {
     public boolean insert(K key) {
         if (root == null) {
             root = new RBNode<>(key);
+            size++;
             return true;
         }
 
@@ -89,7 +92,32 @@ public class RedBlackTree<K extends Comparable<K>> {
          */
         split(node, parent, grand, great);
 
+        size++;
         return true;
+    }
+
+    public boolean contains(K key) {
+        if (root == null) return false;
+
+        RBNode<K> node = root;
+
+        while (node != null) {
+            int cmp = node.getKey().compareTo(key);
+
+            if (cmp == 0) {
+                return true;
+            } else if (cmp > 0) {
+                node = node.getLeft();
+            } else if (cmp < 0) {
+                node = node.getRight();
+            }
+        }
+
+        return false;
+    }
+
+    public Integer size() {
+        return size;
     }
 
     private RBNode<K> rotate(RBNode<K> n) {
