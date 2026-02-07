@@ -2,6 +2,15 @@ package org.main.trees;
 
 import org.main.trees.nodes.RBNode;
 
+/**
+ * RedBlack is a binary tree used to represent 2-3-4 Trees. Nodes can be red and black.
+ * Whenever a black node has one or two red children, they're within one node on the 2-3-4 tree.
+ *
+ * 2-3-4 Trees: https://www.youtube.com/watch?v=K1a2Bk8NrYQ&t=296s
+ * RedBlack Trees: https://www.youtube.com/watch?v=ZgtAONMxpwY
+ *
+ * @param <K> Whatever comparable I guess
+ */
 public class RedBlackTree<K extends Comparable<K>> {
     private RBNode<K> root;
 
