@@ -1,8 +1,6 @@
-package org.main.algorithms;
+package org.main.algorithms.Dijkstra;
 
 import org.main.graphs.WeightedAdjacencyMatrixGraph;
-import org.main.util.PriorityQueue;
-import org.main.util.PriorityQueueCell;
 
 public class Dijkstra {
     public static void printShortestPaths(WeightedAdjacencyMatrixGraph graph, int start) {

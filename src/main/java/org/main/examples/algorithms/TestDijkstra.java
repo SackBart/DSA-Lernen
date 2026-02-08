@@ -1,8 +1,7 @@
 package org.main.examples.algorithms;
 
-import org.main.algorithms.Dijkstra;
+import org.main.algorithms.Dijkstra.Dijkstra;
 import org.main.graphs.WeightedAdjacencyMatrixGraph;
-import org.main.util.PriorityQueue;
 
 public class TestDijkstra {
     public static void main(String[] args) {

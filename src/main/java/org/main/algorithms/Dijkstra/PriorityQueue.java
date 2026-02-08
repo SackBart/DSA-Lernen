@@ -1,4 +1,4 @@
-package org.main.util;
+package org.main.algorithms.Dijkstra;
 
 import java.util.ArrayList;
 import java.util.List;

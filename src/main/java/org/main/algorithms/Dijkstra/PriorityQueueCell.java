@@ -1,4 +1,4 @@
-package org.main.util;
+package org.main.algorithms.Dijkstra;
 
 public class PriorityQueueCell {
     int index;
